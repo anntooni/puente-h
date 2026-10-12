@@ -1,143 +1,143 @@
+
 {
   "version": 1,
-  "author": "VGMil",
+  "author": "ESP32 - Dos puentes H con relés",
   "editor": "wokwi",
   "parts": [
     {
-      "type": "wokwi-breadboard-half",
-      "id": "bb1",
-      "top": 140.1,
-      "left": -217.5,
-      "rotate": 90,
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
       "attrs": {}
     },
     {
-      "type": "wokwi-breadboard-half",
-      "id": "bb2",
-      "top": 140.1,
-      "left": -15.9,
-      "rotate": 90,
+      "type": "wokwi-relay-module",
+      "id": "rly1",
+      "top": 0,
+      "left": 230,
       "attrs": {}
     },
     {
-      "type": "wokwi-breadboard",
-      "id": "bb3",
-      "top": 293,
-      "left": 157.6,
-      "rotate": 90,
+      "type": "wokwi-relay-module",
+      "id": "rly2",
+      "top": 130,
+      "left": 230,
       "attrs": {}
     },
-    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 105.6, "left": -4.76, "attrs": {} },
     {
-      "type": "wokwi-led",
-      "id": "led1",
-      "top": 162.4,
-      "left": 448.2,
-      "rotate": 90,
-      "attrs": { "color": "red", "flip": "1", "label": "LED (GPIO2)" }
+      "type": "wokwi-relay-module",
+      "id": "rly3",
+      "top": 300,
+      "left": 230,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "rly4",
+      "top": 430,
+      "left": 230,
+      "attrs": {}
     },
     {
       "type": "wokwi-resistor",
-      "id": "r1",
-      "top": 216,
-      "left": 412.25,
-      "rotate": 90,
-      "attrs": { "value": "330", "label": "330Ω" }
+      "id": "res1",
+      "top": 50,
+      "left": 470,
+      "attrs": { "value": "330" }
     },
     {
-      "type": "wokwi-text",
-      "id": "text1",
-      "top": -57.6,
-      "left": -105.6,
-      "attrs": {
-        "text": "=== Practica 1: LED Blink ===\nCircuito: ESP32 -> R(1kΩ) -> LED rojo -> GND\nPin de control: GPIO 2 (D2)\nFrecuencia: 1 parpadeo por segundo (500ms ON / 500ms OFF)\nVer src/led_blink.ino para el codigo fuente."
-      }
+      "type": "wokwi-resistor",
+      "id": "res2",
+      "top": 100,
+      "left": 470,
+      "attrs": { "value": "330" }
     },
     {
-      "type": "wokwi-text",
-      "id": "text2",
-      "top": 422.4,
-      "left": -278.4,
-      "attrs": {
-        "text": "Protoboard izquierda\n(pines lado A del ESP32)\nGPIOs: 12,13,14,25,26,27,32,33,34,35\n3V3 | EN | VP | VN | GND"
-      }
+      "type": "wokwi-resistor",
+      "id": "res3",
+      "top": 350,
+      "left": 470,
+      "attrs": { "value": "330" }
     },
     {
-      "type": "wokwi-text",
-      "id": "text3",
-      "top": 432,
-      "left": 38.4,
-      "attrs": {
-        "text": "Protoboard derecha\n(pines lado B del ESP32)\nGPIOs: 0,2,4,5,15,16,17,18,19,21,22,23\nTX | RX | GND"
-      }
+      "type": "wokwi-resistor",
+      "id": "res4",
+      "top": 400,
+      "left": 470,
+      "attrs": { "value": "330" }
     },
     {
-      "type": "wokwi-text",
-      "id": "text4",
-      "top": 537.6,
-      "left": 38.4,
-      "attrs": {
-        "text": "Protoboard circuito\nLED rojo + Resistencia 330Ω\nSenal: GPIO2 -> R1 -> LED -> GND"
-      }
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 30,
+      "left": 570,
+      "attrs": { "color": "red", "label": "Motor 1 - Adelante" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 120,
+      "left": 570,
+      "attrs": { "color": "orange", "label": "Motor 1 - Atras" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": 330,
+      "left": 570,
+      "attrs": { "color": "blue", "label": "Motor 2 - Adelante" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led4",
+      "top": 420,
+      "left": 570,
+      "attrs": { "color": "green", "label": "Motor 2 - Atras" }
     }
   ],
   "connections": [
-    [ "esp:TX", "$serialMonitor:RX", "", [] ],
-    [ "esp:RX", "$serialMonitor:TX", "", [] ],
-    [ "esp:5V", "bb1:bp.18", "red", [ "h0" ] ],
-    [ "bb1:bp.25", "bb1:tp.25", "red", [ "h0" ] ],
-    [ "bb2:bp.25", "bb2:tp.25", "red", [ "h0" ] ],
-    [ "bb1:tp.24", "bb2:bp.24", "red", [ "h0" ] ],
-    [ "bb1:bn.23", "bb1:tn.23", "black", [ "h0" ] ],
-    [ "bb1:tn.22", "bb2:bn.22", "black", [ "h0" ] ],
-    [ "bb2:bn.23", "bb2:tn.23", "black", [ "h0" ] ],
-    [ "bb2:tp.1", "bb3:bp.1", "red", [ "v0" ] ],
-    [ "bb2:tn.2", "bb3:bn.2", "black", [ "h0" ] ],
-    [ "bb1:17t.b", "bb1:bn.14", "black", [ "h0" ] ],
-    [ "bb3:17b.j", "bb3:bn.13", "black", [ "h0" ] ],
-    [ "led1:A", "bb2:18b.h", "blue", [ "h-240" ] ],
-    [ "esp:12", "bb1:16t.a", "", [ "$bb" ] ],
-    [ "esp:13", "bb1:18t.a", "", [ "$bb" ] ],
-    [ "esp:14", "bb1:15t.a", "", [ "$bb" ] ],
-    [ "esp:25", "bb1:12t.a", "", [ "$bb" ] ],
-    [ "esp:26", "bb1:13t.a", "", [ "$bb" ] ],
-    [ "esp:27", "bb1:14t.a", "", [ "$bb" ] ],
-    [ "esp:32", "bb1:10t.a", "", [ "$bb" ] ],
-    [ "esp:33", "bb1:11t.a", "", [ "$bb" ] ],
-    [ "esp:34", "bb1:8t.a", "", [ "$bb" ] ],
-    [ "esp:35", "bb1:9t.a", "", [ "$bb" ] ],
-    [ "esp:3V3", "bb1:4t.a", "", [ "$bb" ] ],
-    [ "esp:EN", "bb1:5t.a", "", [ "$bb" ] ],
-    [ "esp:VP", "bb1:6t.a", "", [ "$bb" ] ],
-    [ "esp:VN", "bb1:7t.a", "", [ "$bb" ] ],
-    [ "esp:GND.1", "bb1:17t.a", "", [ "$bb" ] ],
-    [ "esp:D2", "bb1:19t.a", "", [ "$bb" ] ],
-    [ "esp:D3", "bb1:20t.a", "", [ "$bb" ] ],
-    [ "esp:CMD", "bb1:21t.a", "", [ "$bb" ] ],
-    [ "esp:5V", "bb1:22t.a", "", [ "$bb" ] ],
-    [ "esp:0", "bb2:17b.j", "", [ "$bb" ] ],
-    [ "esp:2", "bb2:18b.j", "", [ "$bb" ] ],
-    [ "esp:4", "bb2:16b.j", "", [ "$bb" ] ],
-    [ "esp:5", "bb2:13b.j", "", [ "$bb" ] ],
-    [ "esp:15", "bb2:19b.j", "", [ "$bb" ] ],
-    [ "esp:16", "bb2:15b.j", "", [ "$bb" ] ],
-    [ "esp:17", "bb2:14b.j", "", [ "$bb" ] ],
-    [ "esp:18", "bb2:12b.j", "", [ "$bb" ] ],
-    [ "esp:19", "bb2:11b.j", "", [ "$bb" ] ],
-    [ "esp:21", "bb2:9b.j", "", [ "$bb" ] ],
-    [ "esp:22", "bb2:6b.j", "", [ "$bb" ] ],
-    [ "esp:23", "bb2:5b.j", "", [ "$bb" ] ],
-    [ "esp:GND.2", "bb2:4b.j", "", [ "$bb" ] ],
-    [ "esp:TX", "bb2:7b.j", "", [ "$bb" ] ],
-    [ "esp:RX", "bb2:8b.j", "", [ "$bb" ] ],
-    [ "esp:GND.3", "bb2:10b.j", "", [ "$bb" ] ],
-    [ "esp:D1", "bb2:20b.j", "", [ "$bb" ] ],
-    [ "esp:D0", "bb2:21b.j", "", [ "$bb" ] ],
-    [ "esp:CLK", "bb2:22b.j", "", [ "$bb" ] ],
-    [ "led1:A", "bb3:10b.h", "", [ "$bb" ] ],
-    [ "led1:C", "bb3:11b.h", "", [ "$bb" ] ],
-    [ "r1:1", "bb3:11b.i", "", [ "$bb" ] ],
-    [ "r1:2", "bb3:17b.i", "", [ "$bb" ] ]
+    ["rly1:VCC", "esp:3V3", "red", []],
+    ["rly1:GND", "esp:GND.1", "black", []],
+    ["rly1:IN", "esp:25", "green", []],
+
+    ["rly2:VCC", "esp:3V3", "red", []],
+    ["rly2:GND", "esp:GND.1", "black", []],
+    ["rly2:IN", "esp:26", "green", []],
+
+    ["rly3:VCC", "esp:3V3", "red", []],
+    ["rly3:GND", "esp:GND.1", "black", []],
+    ["rly3:IN", "esp:27", "green", []],
+
+    ["rly4:VCC", "esp:3V3", "red", []],
+    ["rly4:GND", "esp:GND.1", "black", []],
+    ["rly4:IN", "esp:14", "green", []],
+
+    ["rly1:NC", "esp:3V3", "red", []],
+    ["rly1:NO", "esp:GND.1", "black", []],
+    ["rly2:NC", "esp:GND.1", "black", []],
+    ["rly2:NO", "esp:3V3", "red", []],
+
+    ["rly3:NC", "esp:3V3", "red", []],
+    ["rly3:NO", "esp:GND.1", "black", []],
+    ["rly4:NC", "esp:GND.1", "black", []],
+    ["rly4:NO", "esp:3V3", "red", []],
+
+    ["rly1:COM", "res1:1", "green", []],
+    ["res1:2", "led1:A", "green", []],
+    ["led1:C", "rly2:COM", "green", []],
+
+    ["rly2:COM", "res2:1", "green", []],
+    ["res2:2", "led2:A", "green", []],
+    ["led2:C", "rly1:COM", "green", []],
+
+    ["rly3:COM", "res3:1", "green", []],
+    ["res3:2", "led3:A", "green", []],
+    ["led3:C", "rly4:COM", "green", []],
+
+    ["rly4:COM", "res4:1", "green", []],
+    ["res4:2", "led4:A", "green", []],
+    ["led4:C", "rly3:COM", "green", []]
   ],
   "dependencies": {}
 }
